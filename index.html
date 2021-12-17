@@ -1,27 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;700&display=swap" rel="stylesheet">
-    <link rel ="stylesheet" href="./assets/css/style.css">
-    <title>Weather Dsahboard</title>
-</head>
-<body>
-    <header>
-
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <title>Weather Dashboard</title>
+  </head>
+  <body class="container-fluid d-flex flex-column">
+    <!-- colored banner with weather dashboard -->
+    <header class="col-12 text-center bg-primary">
+      <h1>Weather Dashboard</h1>
     </header>
-    <main>
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
-        <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
-        <script src="./assets/js/script.js"></script>
+    <main class="row px-3">
+      <!-- left side search bar -->
+      <!-- <div> -->
+        <div class="col-4">
+            <div class= card>
+                <h3 class="card-header">Search a city:</h3>
+                <form id="search-form" class="card-body">
+            <!-- <label class="form-label" for="city"></label> -->
+                    <input
+                        name="city"
+                        id="city"
+                        type="text"
+                        autofocus="true"
+                        class="form-input"
+                        placeholder="City"/>
+                        <button type="submit" class="btn bg-primary">Search</button>
+                </form>
+          </div>
+        
+            <section class="col-12 border border-dark" id="prevSearches">
+                <h3>Previous</h3>
+                <h3>Previous 2</h3>
+            </section>
+        </div>
+        <!-- current day box -->
+      <!-- </div> -->
+      <!-- forecast box -->
+      <!-- <div class="row px-3"> -->
+        <div class= "col-8">
+            <section class ="border border-dark">
+                <h2 class="cityName currDate">City<span id="weather-icon"></span></h2>
+                <h4>stuff</h4>
+                <div id="curr-container" class="list-group"></div>
+            </section>
+            <section class=" col-12 border border-dark">
+                <h3>5 Day Forecast:</h3>
+                <section class="row justify-content-between">
+                    <section class="card col-2">
+                        <h4 class="card-header">Date</h4>
+                        <p class="card-body"></p>
+                    </section>
+                    <section class="card col-2">
+                        <h4 class="card-header">Date</h4>
+                        <p class="card-body"></p>
+                    </section>
+                    <section class="card col-2">
+                        <h4 class="card-header">Date</h4>
+                        <p class="card-body"></p>
+                    </section>
+                    <section class="card col-2">
+                        <h4 class="card-header">Date</h4>
+                        <p class="card-body"></p>
+                    </section>
+                    <section class="card col-2">
+                        <h4 class="card-header">Date</h4>
+                        <p class="card-body"></p>
+                    </section>
+                </section>
+            </section>
+        </div>
     </main>
-</body>
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+      <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+      <script src="./assets/js/script.js"></script>
+  </body>
 </html>

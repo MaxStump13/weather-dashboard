@@ -1,0 +1,30 @@
+
+
+.container-fluid{
+    padding: 0px;
+}
+main{
+    margin: 20px auto;
+    height: 100vh;
+}
+#search-form{
+    border-bottom: 3px solid black;
+}
+.card-header{
+    background-color: white;
+    border-bottom: none;
+    font-weight: bold;
+    padding: 4px;
+}
+.card-body{
+    padding: 4px;
+}
+.form-input{
+    padding:3%;
+}
+
+.btn, .form-input{
+    width: 100%;
+    display: block;
+    margin: 5px 0px;
+}

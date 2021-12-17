@@ -11,11 +11,9 @@
 // THEN I am again presented with current and future conditions for that city
 var APIKey = "2024fa16c7d4ae9b96edf7810fbb56a4";
 var city;
-
-//use api to call for citys lon and lat then another call
 // https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}
 //add ?per_page=5 for the future forecast
-
+// api.openweathermap.org/data/2.5/weather?q={city name},{state code}&appid={API key}
 //need to make the input search bar a nested api call, then display of 5 cards for forecast and another nested api for the current, then displayed in a col/container or maybe a card as well
 
 //use bootstrap to make a left aside col that can expand -y for previous searches, these rows need to be clickable to the previous searches and stored locally or server side?
