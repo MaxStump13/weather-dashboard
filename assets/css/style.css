@@ -10,6 +10,11 @@ main{
 #search-form{
     border-bottom: 3px solid black;
 }
+.card{
+    background-color: transparent;
+    border:none;
+    text-align: left;
+}
 .card-header{
     background-color: white;
     border-bottom: none;
@@ -28,3 +33,44 @@ main{
     display: block;
     margin: 5px 0px;
 }
+.favor{
+    background-color: green;
+}
+.mod{
+    background-color: yellow;
+}
+.severe{
+    background-color: red;
+}
+ul {
+    list-style: none;
+    padding-left: 0px;
+}
+li{
+    padding: 10px;
+    font-size: 18px;;
+}
+#weather-icon, #forecastIcon{
+    height: 50px;
+    width: 50px;
+}
+.hidden{
+    display:none;
+}
+h4{
+    font-size: 16px;
+    padding-left: 0px;
+    text-align: left;
+}
+#forecast-container{
+    padding: 0px 15px ;
+}
+#fore{
+    width: 18%;
+    background-color: lightblue;
+}
+#foreDate{
+    background-color: lightblue;
+}
+/* change margins and line height of hs, and font */
+/* add border radius/effects to make uv i look nicer */

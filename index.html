@@ -34,16 +34,16 @@
             <!-- <label class="form-label" for="city"></label> -->
                     <input
                         name="city"
-                        id="city"
+                        id="search-input"
                         type="text"
                         autofocus="true"
                         class="form-input"
                         placeholder="City"/>
-                        <button type="submit" class="btn bg-primary">Search</button>
+                    <button type="submit" class="btn bg-primary">Search</button>
                 </form>
           </div>
         
-            <section class="col-12 border border-dark" id="prevSearches">
+            <section class="d-flex flex-column border border-dark" id="prevSearches">
                 <h3>Previous</h3>
                 <h3>Previous 2</h3>
             </section>
@@ -52,36 +52,14 @@
       <!-- </div> -->
       <!-- forecast box -->
       <!-- <div class="row px-3"> -->
-        <div class= "col-8">
-            <section class ="border border-dark">
-                <h2 class="cityName currDate">City<span id="weather-icon"></span></h2>
-                <h4>stuff</h4>
-                <div id="curr-container" class="list-group"></div>
+        <div class= "col-8 hidden">
+            <section class ="border border-dark" id="city-container">
+                <h2 class="cityName"><span id="currDate"><img id="weather-icon"></span></h2>
+                <ul id="curr-container"></ul>
             </section>
-            <section class=" col-12 border border-dark">
+            <section class=" d-flex flex-column">
                 <h3>5 Day Forecast:</h3>
-                <section class="row justify-content-between">
-                    <section class="card col-2">
-                        <h4 class="card-header">Date</h4>
-                        <p class="card-body"></p>
-                    </section>
-                    <section class="card col-2">
-                        <h4 class="card-header">Date</h4>
-                        <p class="card-body"></p>
-                    </section>
-                    <section class="card col-2">
-                        <h4 class="card-header">Date</h4>
-                        <p class="card-body"></p>
-                    </section>
-                    <section class="card col-2">
-                        <h4 class="card-header">Date</h4>
-                        <p class="card-body"></p>
-                    </section>
-                    <section class="card col-2">
-                        <h4 class="card-header">Date</h4>
-                        <p class="card-body"></p>
-                    </section>
-                </section>
+                <section class="row justify-content-between" id="forecast-container"> </section>
             </section>
         </div>
     </main>
