@@ -10,7 +10,7 @@
 // WHEN I click on a city in the search history
 // THEN I am again presented with current and future conditions for that city
 var APIKey = "2024fa16c7d4ae9b96edf7810fbb56a4";
-var city;
+var storedCities=[];
 var searchFormEl = document.querySelector("#search-form");
 var cityNameEl = document.querySelector(".cityName");
 var searchInputVal = document.querySelector("#search-input");
@@ -21,30 +21,27 @@ var currWeatherIconEl = document.querySelector("#weather-icon");
 var resultsEl = document.querySelector(".col-8");
 var forecastEl = document.querySelector("#forecast-container");
 var prevEl =document.querySelector("#prevSearches");
+var filled = false;
 
-
-// https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}
-//add ?per_page=5 for the future forecast
-
-
-// api.openweathermap.org/data/2.5/weather?q={city name},{state code}&appid={API key}
 function handleSearchFormSubmit(event){
     event.preventDefault();
-     var citySearch = searchInputVal.value.trim();
+    var citySearch = searchInputVal.value.trim();
     if(!citySearch){
         console.error("need search input");
     }
-    // cityNameEl.textContent = citySearch;
     searchInputVal.value = "";
+    cityNameEl.innerText ="";
+    if(filled == true){
+    clearSpace();
+    }
     getCity(citySearch);
-
 }
 function getCity(city){
     var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
     fetch(apiUrl)
         .then(function(response){
             if(response.ok){
-                // console.log(response);
+                console.log(response);
                 response.json().then(function(data){
                     getCoordinates(data, city);
                 });
@@ -62,23 +59,18 @@ function getCoordinates(info, searchedCity){
         return;
     }
     console.log(info);
-    // searchTermEl.textContent = searchedCity;
+    cityNameEl.textContent = info.name;
     var coordinates = info.coord;
-    // console.log(coordinates);
     var lon = coordinates.lon;
     var lat = coordinates.lat;
-    // console.log(coordinates.lon);
-    // console.log(coordinates.lat);
-
-
     var APIUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat +"&lon=" + lon + "&exclude=minutely,hourly,alerts&units=imperial&appid=" + APIKey;
     fetch(APIUrl)
         .then(function(response){
             if(response.ok){
-                console.log(response);
+                // console.log(response);
                 response.json().then(function(data){
                     displayWeather(data, searchedCity);
-                    storeCity(info, searchedCity);
+                    storeCity(info);
                 });
             }else{
                 alert("error: "+ response.statusText);
@@ -87,17 +79,10 @@ function getCoordinates(info, searchedCity){
         .catch(function(error){
             alert("unable to connect");
         });
-    // displayWeather(coordinates, data);
 }
 function displayWeather(locData,city){
-    // var lon = coord.lon;
-    // var lat = coord.lat;
-    // var APIUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat +"&lon=" + lon + "&exclude=minutely,hourly,alerts&appid=" + APIKey;
         resultsEl.classList.remove("hidden");
-        cityNameEl.textContent = city;
-        console.log(locData);
         currDateEl.textContent =" (" + moment().format("l") +"):"; 
-        // console.log(locData.current.weather[0].icon);
         var iconId = locData.current.weather[0].icon;
         var icon = "http://openweathermap.org/img/wn/" + iconId +"@2x.png";
         currWeatherIconEl.setAttribute("src", icon);
@@ -126,7 +111,6 @@ function displayWeather(locData,city){
             var date = document.createElement("h4")
             date.classList = "card-header";
             date.setAttribute("id", "foreDate");
-            // console.log(locData.daily[i].dt);
             date.textContent = moment(locData.daily[i].dt, "X").format("l");
             var foreBody = document.createElement("section");
             var foreTemp = document.createElement("p");
@@ -146,19 +130,85 @@ function displayWeather(locData,city){
             card.append(date,foreBody);
             forecastEl.append(card);
         }
-
-
         uvEl.append(uvCond);
         cityNameEl.append(currDateEl, currWeatherIconEl);
         currCityContainerEl.append(tempEl,windEl,humidityEl,uvEl);    
+        filled = true;
+}
+function storeCity(storeData){
+    var previous = {city : storeData.name, data: storeData};
+    var prevCity = JSON.parse(localStorage.getItem("City"));
+    if(prevCity === null){
+        storedCities.unshift(previous);
+        localStorage.setItem("City", JSON.stringify(storedCities));
+        var prevSearch = document.createElement("button");
+        prevSearch.textContent = storeData.name + ", " + storeData.data.sys.country;
+        prevSearch.classList = "btn bg-secondary";
+        prevSearch.setAttribute("name", storeData.name);
+        prevEl.append(prevSearch);
+        prevSearch.addEventListener("click", searchAgain);
+    }
+    else{
+        var noRepeat = true;
+        for (i=0;i<prevCity.length;i++){
+            console.log(prevCity[i].data.coord);
+            if(prevCity[i].data.coord.lat == previous.data.coord.lat && prevCity[i].data.coord.lon == previous.data.coord.lon){
+            console.log("same city searched");
+            noRepeat=false;
+            }
+        }
+        if(noRepeat ===true){
+            storedCities.unshift(previous);
+            localStorage.setItem("City", JSON.stringify(storedCities));
+            var prevSearch = document.createElement("button");
+            prevSearch.textContent = storeData.name + ", " + storeData.data.sys.country;
+            prevSearch.classList = "btn bg-secondary";
+            prevSearch.setAttribute("name", storeData.name);
+            prevEl.append(prevSearch);
+            prevSearch.addEventListener("click", searchAgain);
+        }
+    }
+    
+}  
+function searchAgain(event){
+    event.preventDefault();
+    // console.log(this.name);
+    var prevCity = JSON.parse(localStorage.getItem("City"));
+    // console.log(prevCity);
+    for(i=0;i<prevCity.length; i++){
+        if(prevCity[i].city == this.name){
+            console.log(i);
+            console.log(prevCity[i]);
+            if(filled == true){
+            clearSpace();
+            }
+            getCoordinates(prevCity[i].data,prevCity[i].city)
+        }
+    }
+}
+function init(){
+    var oldCities = JSON.parse(localStorage.getItem("City"));
+    if(oldCities !== null){
+        storedCities = oldCities;
+        for(i=0;i<storedCities.length;i++){
+        var prevSearch = document.createElement("button");
+        prevSearch.textContent = storedCities[i].city + ", " + storedCities[i].data.sys.country;
+        prevSearch.classList = "btn bg-secondary";
+        prevSearch.setAttribute("name", storedCities[i].city);
+        prevSearch.addEventListener("click", searchAgain);
+        prevEl.append(prevSearch);
+        }
+    }
 }
 
-function storeCity(storeData, storeCity){
-    var =
-//send to get coordinates
+function clearSpace(){
+    while(currCityContainerEl.firstChild) {
+        currCityContainerEl.removeChild(currCityContainerEl.firstChild);
+    }
+    while(forecastEl.firstChild){
+        forecastEl.removeChild(forecastEl.firstChild);
+    }
+    currWeatherIconEl.setAttribute("src", "");
 }
-//need to make the input search bar a nested api call, then display of 5 cards for forecast and another nested api for the current, then displayed in a col/container or maybe a card as well
-
-//use bootstrap to make a left aside col that can expand -y for previous searches, these rows need to be clickable to the previous searches and stored locally or server side?
-
+init();
 searchFormEl.addEventListener("submit", handleSearchFormSubmit);

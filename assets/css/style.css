@@ -7,6 +7,9 @@ main{
     margin: 20px auto;
     height: 100vh;
 }
+h2,h3,h4{
+    font-weight: bold;
+}
 #search-form{
     border-bottom: 3px solid black;
 }
@@ -32,6 +35,10 @@ main{
     width: 100%;
     display: block;
     margin: 5px 0px;
+}
+.favor, .mod, .severe{
+    padding: 0px 10px;
+    border-radius: 5px;
 }
 .favor{
     background-color: green;
@@ -67,10 +74,13 @@ h4{
 }
 #fore{
     width: 18%;
-    background-color: lightblue;
 }
-#foreDate{
-    background-color: lightblue;
+#foreDate, #fore{
+    background-color: darkblue;
+    color: white;
+}
+#prevSearches{
+    padding: 4px;
 }
 /* change margins and line height of hs, and font */
 /* add border radius/effects to make uv i look nicer */

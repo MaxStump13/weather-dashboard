@@ -26,12 +26,10 @@
     </header>
     <main class="row px-3">
       <!-- left side search bar -->
-      <!-- <div> -->
         <div class="col-4">
             <div class= card>
-                <h3 class="card-header">Search a city:</h3>
+                <h3 class="card-header">Search for a city:</h3>
                 <form id="search-form" class="card-body">
-            <!-- <label class="form-label" for="city"></label> -->
                     <input
                         name="city"
                         id="search-input"
@@ -43,15 +41,9 @@
                 </form>
           </div>
         
-            <section class="d-flex flex-column border border-dark" id="prevSearches">
-                <h3>Previous</h3>
-                <h3>Previous 2</h3>
-            </section>
+            <form class="d-flex flex-column" id="prevSearches"></form>
         </div>
-        <!-- current day box -->
-      <!-- </div> -->
-      <!-- forecast box -->
-      <!-- <div class="row px-3"> -->
+
         <div class= "col-8 hidden">
             <section class ="border border-dark" id="city-container">
                 <h2 class="cityName"><span id="currDate"><img id="weather-icon"></span></h2>
