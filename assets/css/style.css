@@ -1,16 +1,23 @@
-
-
-.container-fluid{
+/* custom background color gradients */
+:root {
+    --blue: linear-gradient(to bottom right, rgb(2, 119, 252), rgb(22, 22, 82));
+    --grey: radial-gradient(white, rgb(80, 80, 80));
+  }
+.container-fluid, ul{
     padding: 0px;
 }
+/* sets margins and main takes 100% of height */
 main{
     margin: 20px auto;
     height: 100vh;
 }
-h2,h3,h4{
+h2{
+    padding-left: 5px;
+}
+h2, h3, h4, li, .card-header{
     font-weight: bold;
 }
-#search-form{
+#search-form, #forecast-container{
     border-bottom: 3px solid black;
 }
 .card{
@@ -18,13 +25,13 @@ h2,h3,h4{
     border:none;
     text-align: left;
 }
-.card-header{
-    background-color: white;
-    border-bottom: none;
-    font-weight: bold;
-    padding: 4px;
+#searchCard, body{
+    background-color: #E4E4E4;
 }
-.card-body{
+.card-header{
+    border-bottom: none;
+}
+.card-body, .card-header, #prevSearches{
     padding: 4px;
 }
 .form-input{
@@ -40,18 +47,19 @@ h2,h3,h4{
     padding: 0px 10px;
     border-radius: 5px;
 }
+/* colors for uv index  */
 .favor{
     background-color: green;
 }
 .mod{
     background-color: yellow;
+    color: black;
 }
 .severe{
     background-color: red;
 }
 ul {
     list-style: none;
-    padding-left: 0px;
 }
 li{
     padding: 10px;
@@ -70,17 +78,16 @@ h4{
     text-align: left;
 }
 #forecast-container{
-    padding: 0px 15px ;
+    padding: 0px 15px 15px 15px;
 }
 #fore{
     width: 18%;
 }
-#foreDate, #fore{
-    background-color: darkblue;
+.prevBtn{
+    background: var(--grey);
+}
+#fore, header, .sbtn-color, #city-container{
+    background: var(--blue);
     color: white;
 }
-#prevSearches{
-    padding: 4px;
-}
-/* change margins and line height of hs, and font */
-/* add border radius/effects to make uv i look nicer */
+

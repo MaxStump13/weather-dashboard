@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Links to bootstrap, jquery ui, google fonts, and my script -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"
@@ -21,46 +22,55 @@
   </head>
   <body class="container-fluid d-flex flex-column">
     <!-- colored banner with weather dashboard -->
-    <header class="col-12 text-center bg-primary">
+    <header class="col-12 text-center">
       <h1>Weather Dashboard</h1>
     </header>
     <main class="row px-3">
-      <!-- left side search bar -->
-        <div class="col-4">
-            <div class= card>
-                <h3 class="card-header">Search for a city:</h3>
-                <form id="search-form" class="card-body">
-                    <input
-                        name="city"
-                        id="search-input"
-                        type="text"
-                        autofocus="true"
-                        class="form-input"
-                        placeholder="City"/>
-                    <button type="submit" class="btn bg-primary">Search</button>
-                </form>
-          </div>
-        
-            <form class="d-flex flex-column" id="prevSearches"></form>
+      <!-- left side search bar/prev searches container -->
+      <div class="col-4">
+        <div class="card">
+          <h3 class="card-header" id="searchCard">Search for a city:</h3>
+          <form id="search-form" class="card-body">
+            <input
+              name="city"
+              id="search-input"
+              type="text"
+              autofocus="true"
+              class="form-input"
+              placeholder="City"
+            />
+            <button type="submit" class="btn sbtn-color">Search</button>
+          </form>
         </div>
-
-        <div class= "col-8 hidden">
-            <section class ="border border-dark" id="city-container">
-                <h2 class="cityName"><span id="currDate"><img id="weather-icon"></span></h2>
-                <ul id="curr-container"></ul>
-            </section>
-            <section class=" d-flex flex-column">
-                <h3>5 Day Forecast:</h3>
-                <section class="row justify-content-between" id="forecast-container"> </section>
-            </section>
-        </div>
+        <!-- prev searches container -->
+        <form class="d-flex flex-column" id="prevSearches">
+            <h3>Previous Searches:</h3>
+        </form>
+      </div>
+      <!-- right side current/forecast weather conditions container -->
+      <div class="col-8 hidden">
+        <section class="border border-dark" id="city-container">
+          <h2 class="cityName">
+            <span id="currDate"><img id="weather-icon" /></span>
+          </h2>
+          <ul id="curr-container"></ul>
+        </section>
+        <!-- forecast cards container -->
+        <section class="d-flex flex-column">
+          <h3>5-Day Forecast:</h3>
+          <section
+            class="row justify-content-between"
+            id="forecast-container"
+          ></section>
+        </section>
+      </div>
     </main>
-
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
-      <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
-      <script src="./assets/js/script.js"></script>
+    <!-- scripts for jquery(+ui), popper, bootstrap, moment, my script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+    <script src="./assets/js/script.js"></script>
   </body>
 </html>
